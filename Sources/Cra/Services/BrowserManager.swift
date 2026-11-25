@@ -2198,6 +2198,10 @@ final class BrowserManager: NSObject, @preconcurrency CraBrowserDelegate, WebKit
         take(rt.devToolsCalls.frontendShowsPanel(first: first), on: rt)
     }
 
+    func browserDevToolsWantsKeys(_ browser: CraBrowser) {
+        if let id = tabID(of: browser) { delegate?.browserManagerDevToolsTakeKeys(id) }
+    }
+
     /// CEF's window for the visible tab's DevTools, if any.
     var visibleDevToolsWindow: NSWindow? { visibleTabID.flatMap { devToolsViews[$0]?.window } }
 

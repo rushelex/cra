@@ -1745,6 +1745,8 @@ enum BrowserManagerLifecycleTests {
         manager.browser(browser, devToolsShowsPanel: "elements")
         expect(browser.devToolsScripts.last == DevToolsFrontendCalls.armPicker && observer.devToolsKeys.count == 3,
                "and arms the picker once the frontend is up")
+        manager.browserDevToolsWantsKeys(browser)
+        expect(observer.devToolsKeys == [id, id, id, id], "the frontend asking for the keys (the picker letting go) gets them")
         manager.closeAll()
     }
 
